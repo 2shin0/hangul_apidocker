@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  flask_app:
+    build:
+      context: ./flask_app
+    volumes:
+      - ./flask_app:/app
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./flask_app/.env
+    depends_on:
+      - fastapi_app
+
+  fastapi_app:
+    build:
+      context: ./fastapi_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./fastapi_app:/app
+    environment:
+      - AWS_S3_ACCESS_KEY=${AWS_S3_ACCESS_KEY}
+      - AWS_S3_PRIVATE_KEY=${AWS_S3_PRIVATE_KEY}

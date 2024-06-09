@@ -1,0 +1,67 @@
+* { -webkit-tap-highlight-color: transparent; }
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;    	
+}
+
+#testBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+#wrap { 
+    position: absolute; 
+    overflow: hidden;
+    width: 1280px; 
+    height: 800px;         
+    background: url("../images/content_bg.jpg") no-repeat;    
+}
+
+
+.container {
+    width: 1000px; /* 예시 - 부모 요소의 너비를 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+    text-align: center;
+}
+
+.title img {
+    width: 500px; /* 이미지의 원래 비율을 유지 */
+    height: 70px; /* 이미지의 원래 비율을 유지 */
+    max-width: 80%; /* 이미지가 부모 요소의 너비를 넘지 않도록 */
+    max-height: 80%; /* 이미지가 부모 요소의 높이를 넘지 않도록 */
+    margin-top: 50px;
+    margin-bottom: 20px;
+    display: block; /* 이미지를 블록 요소로 설정하여 가운데 정렬을 적용 */
+    margin-left: auto; /* 왼쪽 여백을 자동으로 설정하여 가운데 정렬 */
+    margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 가운데 정렬 */
+}
+
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.grid-button1, .grid-button2, .grid-button3, .grid-button4 {
+    margin-top: 10px;
+    padding: 0;
+    border: none;
+    width: 450px;
+    height: 280px;
+    cursor: pointer;
+    background: none;
+    border-color: black;
+}
+
+.grid-button1 img, .grid-button2 img, .grid-button3 img, .grid-button4 img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/start_style.css') }}" />
+    <title>Button Grid</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="wrap">
+        <div class="container">
+            <div class="title"> <img src="{{ url_for('static', filename='images/start_title.png') }}" alt="동요 가사를 써보아요!"> </div>
+            <div class="button-grid">
+                <form action="{{ url_for('navigate') }}" method="POST">
+                    <button type="submit" class="grid-button1">
+                        <img src="{{ url_for('static', filename='images/kkachi.png') }}" alt="까치까치 설날">
+                    </button>
+                </form>
+                <form action="#" method="POST">
+                    <button type="submit" class="grid-button2">
+                        <img src="{{ url_for('static', filename='images/som.png') }}" alt="까치까치 설날">
+                    </button>
+                </form>
+                <form action="#" method="POST">
+                    <button type="submit" class="grid-button3">
+                        <img src="{{ url_for('static', filename='images/tomato.png') }}" alt="까치까치 설날">
+                    </button>
+                </form>
+                <form action="#" method="POST">
+                    <button type="submit" class="grid-button4">
+                        <img src="{{ url_for('static', filename='images/star.png') }}" alt="까치까치 설날">
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

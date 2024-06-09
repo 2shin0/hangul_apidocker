@@ -1,0 +1,370 @@
+@font-face {
+    font-family: "HU네모굴림170";
+    /* src: url("../../common/font/HU네모굴림170.ttf"); */
+    src: url("../font/HU네모굴림170.woff");
+  }
+  
+  
+  
+  * { -webkit-tap-highlight-color: transparent; }
+  
+  
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;    	
+  }
+  
+  #testBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  
+  #wrap { 
+    position: absolute; 
+    overflow: hidden;
+    width: 1280px; 
+    height: 800px;         
+    background: url("../images/content_bg.jpg") no-repeat;    
+  }
+  
+  #correct, #incorrect { 
+    display: none;
+    position: absolute; 
+    position: fixed;
+    overflow: hidden;
+    z-index: 1000;
+    width: 1280px; 
+    height: 800px;         
+    background-color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+  }
+  
+  .correct-message {
+    font-family: "HU네모굴림170";
+    /* margin-top: 10px; */
+    font-size: 70px;
+    color: #F2858E; 
+    position: absolute;
+    top: 68%; 
+    left: 50%; 
+    /* width: 400px; /* 부모 요소의 너비의 80%로 설정 */
+    /* height: 400px; 비율을 유지하면서 높이 자동 조정 */
+    display: none; /* 기본적으로 숨김 */
+    pointer-events: none; /* 마우스 이벤트 허용 안 함 */
+    transform: translate(-50%, -50%);
+  }
+  
+  #modal { 
+    display: none;
+    position: absolute; 
+    position: fixed;
+    overflow: hidden;
+    z-index: 1000;
+    width: 1280px; 
+    height: 800px;         
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .speaker_button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .speaker_button img {
+    width: 50px;
+    height: 50px;
+    margin-left: 50px;
+    margin-top: 30px;
+  }
+  
+  
+  .home_button {
+    position: absolute;
+    top: 20px;
+    left: 1110px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .home_button img {
+    width: 60px;
+    height: 60px;
+    top: 20px;
+    /* margin-left: 1110px; */
+    margin-top: 30px;
+  }
+  
+  
+  .speaker_button img:hover, .home_button img:hover {
+    transform: scale(1.1);
+  }
+  
+  .speaker_button:hover img, .home_button:hover img {
+    transform: scale(1.1);
+  }
+  
+  
+  .title_h1 img {
+    width: 500px; /* 이미지의 원래 비율을 유지 */
+    height: 70px; /* 이미지의 원래 비율을 유지 */
+    max-width: 80%; /* 이미지가 부모 요소의 너비를 넘지 않도록 */
+    max-height: 80%; /* 이미지가 부모 요소의 높이를 넘지 않도록 */
+    margin-top: 50px;
+    margin-bottom: 20px;
+    display: block; /* 이미지를 블록 요소로 설정하여 가운데 정렬을 적용 */
+    margin-left: auto; /* 왼쪽 여백을 자동으로 설정하여 가운데 정렬 */
+    margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 가운데 정렬 */
+  }
+  
+  .photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .photo img {
+    display: block;
+    margin-top: 10px;
+    width: 750px; 
+    height: 330px; 
+  }
+  
+  .canvas-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .canvas-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .canvas-group {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .canvas-item {
+    position: relative;
+  }
+  
+  .canvas {
+    margin-top: 30px;
+    width: 200px;
+    height: 200px;
+    background-color: rgb(255, 243, 247);
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+  }
+  
+  .text-overlay-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 30px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+  
+  .text-overlay {
+    font-family: "HU네모굴림170";
+    font-size: 150px; /* 텍스트 크기 조정 */
+    color: rgba(0, 0, 0, 0.1); /* 텍스트 색상과 투명도 조정 */
+  }
+  
+  .correct-video {
+    position: absolute;
+    top: 50px; /* 부모 요소의 중앙에 위치 */
+    left: 150px; /* 부모 요소의 중앙에 위치 */
+    /* transform: translate(-50%, -50%); 요소를 가운데 정렬 */
+    width: 966px; /* 원하는 너비로 설정 */
+    height: 690px; /* 너비에 따라 높이를 자동으로 조정하여 비율 유지 */
+    object-fit: fill;
+}
+
+.correct-message {
+    text-align: center; /* 텍스트를 중앙 정렬 */
+    font-size: 1.5em; /* 텍스트 크기 조정 */
+    margin-top: 20px; /* 텍스트와 비디오 사이의 여백 조정 */
+}
+
+.incorrect-video {
+  position: absolute;
+  top: 50px; /* 부모 요소의 중앙에 위치 */
+  left: 150px; /* 부모 요소의 중앙에 위치 */
+  /* transform: translate(-50%, -50%); 요소를 가운데 정렬 */
+  width: 966px; /* 원하는 너비로 설정 */
+  height: 690px; /* 너비에 따라 높이를 자동으로 조정하여 비율 유지 */
+  object-fit: fill;
+}
+  
+  .button-container {
+    display: flex;
+    flex-direction: column; /* 버튼을 세로로 정렬 */
+    gap: 1px; /* 버튼 사이의 간격 조정 */
+    margin-top: 30px; /* 캔버스 상단과 버튼 컨테이너 간의 간격 */
+  }
+  
+  .check_button {
+    background-color: transparent;
+    border: none;
+    background-image: url('../images/submit.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 160px; /* 버튼 너비 */
+    height: 80px; /* 버튼 높이 */
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 5px;
+  }
+  
+  .reset_button {
+    background-color: transparent;
+    border: none;
+    background-image: url('../images/retry.png');
+    background-size: contain; /* 이미지가 버튼 크기에 맞게 조정됨 */
+    background-repeat: no-repeat; /* 이미지 반복 방지 */
+    background-position: center; /* 이미지 중앙 배치 */
+    width: 160px; /* 버튼 너비 */
+    height: 80px; /* 버튼 높이 */
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 30px;
+    margin-top: -20px;
+  }
+  
+  .next_button {
+    background-image: url('../images/nextq.png');
+    position: absolute;
+    right: 50px;
+    bottom: 30px;
+    background-color: transparent;
+    border: none;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 160px;
+    height: 80px;
+    cursor: pointer;
+    display: inline-block;
+  }
+ 
+ 
+  .retry_button {
+    background-image: url('../images/reretry.png');
+    position: absolute;
+    right: 50px;
+    bottom: 100px;
+    background-color: transparent;
+    border: none;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 160px;
+    height: 80px;
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+  .check_button:hover, .reset_button:hover, .next_button:hover, .retry_button:hover {
+    cursor: pointer;
+  }
+  
+  
+  .modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 300px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: hidden; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+  }
+  
+  .modal-content {
+  
+    position: relative;
+    font-family: "HU네모굴림170";
+    font-size: 30px;
+    text-align: center;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 50px 20px 20px 20px;
+    border: 1px solid #888;
+    width: 400px;
+    height: 200px;
+  }
+  
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #aaa;
+    font-size: 50px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: rgb(83, 83, 83);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .confirm_button{
+    font-family: "HU네모굴림170";
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    width: 150px;
+    height: 50px;
+    color: #494949;
+    background-color: #f8b1b6;
+    transition: background-color 0.3s, color 0.3s; 
+  }
+  
+  .cancel_button{
+    font-family: "HU네모굴림170";
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    width: 150px;
+    height: 50px;
+    color: #494949;
+    background-color: #f7e6e7;
+    transition: background-color 0.3s, color 0.3s; 
+  }
+  
+  .confirm_button:hover {
+    background-color: #f4989d;
+    color: #ffffff;
+  }
+  
+  .cancel_button:hover {
+    background-color: #f5d5d7;
+    color: #ffffff;
+  }

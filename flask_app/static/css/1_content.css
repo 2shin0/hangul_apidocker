@@ -1,0 +1,227 @@
+/* ************************************************************************************** */
+
+@font-face {
+    font-family: "HU네모굴림170";
+    /* src: url("../../common/font/HU네모굴림170.ttf"); */
+    src: url("../font/HU네모굴림170.woff");
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;    	
+}
+
+#testBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+#wrap { 
+    position: absolute; 
+    overflow: hidden;
+    width: 1280px; 
+    height: 800px;         
+    background: url("../images/content_bg.jpg") no-repeat;    
+}
+
+
+/* thum_container */
+#thum_container {
+    position: absolute;  
+    /* outline: 2px solid blue; */
+    width: 200px;
+}
+
+
+
+
+
+#popup_container { 
+    position: absolute;      
+    width: 100%;
+    height: 100%;
+    z-index: 25;
+    display: none;    
+}
+
+
+#popup_container .popup { 
+    position: absolute;    
+    display: none;
+    /* left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); */
+}
+
+
+
+
+#btn_prev {
+    top: 350px;
+    left: 25px;
+    display: none;
+}
+#btn_next {
+    top: 350px;
+    left: 1205px;
+    display: none;    
+}
+#btn_finish {
+    top: 360px;
+    left: 1165px;    
+    display: none;    
+}
+
+
+
+
+/* 공통 */
+.visible {
+    visibility: visible;
+}
+.hidden {
+    visibility: hidden;
+}
+.none {
+    display: none !important;
+}
+.block {
+    display: block !important;
+}
+.pointNone {
+    pointer-events: none !important;
+}
+
+
+/* 캐릭터(애니) */
+.ani_canvas {
+    position: absolute;
+    z-index: 21;    
+    width: 400px;
+}
+.ani_canvas canvas {
+    position: absolute; 
+    display: block;
+    width: 350px;
+}
+
+.dom_overlay_container {
+    pointer-events: none; 
+    /* overflow: hidden;      */
+    position: absolute; 
+    left: 0px; 
+    top: 0px; 
+    display: block;
+    width: 300px;
+}
+
+
+
+/* keyframes ani */
+.frame_bounceIn {
+    animation: frame_bounceIn 1s;
+    -webkit-animation: frame_bounceIn 1s; 
+}
+@keyframes frame_bounceIn {
+    0%,
+    20%,
+    40%,
+    60%,
+    80%,
+    to {
+        animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+    }
+    0% {
+        opacity: 0;
+        transform: scale3d(.7, .7, .7);
+    }
+    30% {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    60% {
+        transform: scale3d(.9, .9, .9);
+    }    
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+.frame_bounceIn2 {
+    animation: frame_bounceIn 1s;
+    -webkit-animation: frame_bounceIn2 1s; 
+}
+@keyframes frame_bounceIn2 {
+0%,
+    20%,
+    40%,
+    60%,
+    80%,
+    to {
+        animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+    }
+    0% {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3);
+    }
+    20% {
+        transform: scale3d(1.25, 1.25, 1.25);
+    }
+    40% {
+        transform: scale3d(.9, .9, .9);
+    }
+    60% {
+        opacity: 1;
+        transform: scale3d(1.13, 1.13, 1.13);
+    }
+    80% {
+        transform: scale3d(.97, .97, .97);
+    }
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+
+.frame_noti {
+    animation: frame_noti 1.8s step-end infinite;
+    -webkit-animation: frame_noti 1.8s step-end infinite;     
+}
+@keyframes frame_noti {   
+    0% {
+        opacity: 0;
+    } 
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0;
+    } 
+}
+
+
+/* * { font-family: Verdana, Arial, sans-serif; } */
+
+/* a:link { color:#000; text-decoration: none; }
+a:visited { color:#000; }
+a:hover { color:#33F; } */
+
+/* table {
+    border-collapse: collapse;
+    border-spacing: 0;
+} */
+
+/* div {
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+} */

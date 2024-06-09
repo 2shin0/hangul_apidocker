@@ -1,0 +1,16 @@
+flask
+requests
+pillow
+matplotlib
+openpyxl
+scipy
+pandas
+numpy
+opencv-python
+torch
+torchvision
+matplotlib
+tqdm
+scikit-learn
+boto3
+python-dotenv==1.0.1

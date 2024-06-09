@@ -1,0 +1,159 @@
+/* @font-face {
+    font-family: 'BMJUA';
+    src: url("./baemin/BMJUA_ttf.ttf");
+}
+
+@font-face {
+    font-family: 'gmarket';
+    src: url("./gmarket/GmarketSansTTFBold.ttf");
+}
+
+body {
+    background-image: url('/static/images/content_bg.jpg');
+    background-size: cover; 
+    font-family: 'BMJUA';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+} */
+
+@font-face {
+    font-family: "HU네모굴림170";
+    /* src: url("../../common/font/HU네모굴림170.ttf"); */
+    src: url("../common/font/HU네모굴림170.woff");
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;    	
+}
+
+#testBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+#wrap { 
+    position: absolute; 
+    overflow: hidden;
+    width: 1280px; 
+    height: 800px;         
+    background: url("../images/content_bg.jpg") no-repeat;    
+}
+
+
+
+.speaker_button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.speaker_button img {
+    width: 50px;
+    height: 50px;
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+.title_h1 img {
+    width: 500px; /* 이미지의 원래 비율을 유지 */
+    height: 70px; /* 이미지의 원래 비율을 유지 */
+    max-width: 80%; /* 이미지가 부모 요소의 너비를 넘지 않도록 */
+    max-height: 80%; /* 이미지가 부모 요소의 높이를 넘지 않도록 */
+    margin-top: 50px;
+    margin-bottom: 20px;
+    display: block; /* 이미지를 블록 요소로 설정하여 가운데 정렬을 적용 */
+    margin-left: auto; /* 왼쪽 여백을 자동으로 설정하여 가운데 정렬 */
+    margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 가운데 정렬 */
+}
+
+
+
+.photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.photo img {
+    display: block;
+    margin-top: 10px;
+    width: 750px; 
+    height: 330px; 
+}
+
+.canvas-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 상단 정렬 */
+    gap: 20px; /* 캔버스와 버튼 사이의 간격 설정 */
+}
+
+.canvas-container {
+    display: flex;
+    gap: 20px; 
+}
+
+.canvas {
+    margin-top: 30px;
+    width: 200px;
+    height: 200px;
+    background-color: rgb(255, 243, 247);
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; /* 버튼을 세로로 정렬 */
+    gap: 1px; /* 버튼 사이의 간격 조정 */
+    margin-top: 30px; /* 캔버스 상단과 버튼 컨테이너 간의 간격 */
+}
+
+.image_button {
+    background-color: transparent;
+    border: none;
+    background-image: url('../images/submit.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 160px; /* 버튼 너비 */
+    height: 80px; /* 버튼 높이 */
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+.reset_button {
+    background-color: transparent;
+    border: none;
+    background-image: url('../images/retry.png');
+    background-size: contain; /* 이미지가 버튼 크기에 맞게 조정됨 */
+    background-repeat: no-repeat; /* 이미지 반복 방지 */
+    background-position: center; /* 이미지 중앙 배치 */
+    width: 160px; /* 버튼 너비 */
+    height: 80px; /* 버튼 높이 */
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 30px;
+    margin-top: -20px;
+}
+
+.image_button:hover, .reset_button:hover {
+    cursor: pointer;
+}

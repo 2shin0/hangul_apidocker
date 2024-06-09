@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index_style.css') }}" />
+    <title>동요를 써보아요</title>
+</head>
+<body>
+    <div id="wrap">
+        <div class="title_h1">
+            <img src="{{ url_for('static', filename='images/title.png') }}" alt="동요 가사를 써보아요!">
+        </div>
+        <form id="canvasForm" action="/index" method="post" enctype="multipart/form-data">
+            <div class="photo"> 
+                <img src="{{ url_for('static', filename='images/photo.png') }}" alt="사진">
+            </div>
+            <button id="homeButton" class="home_button" type="button">
+                <img src="{{ url_for('static', filename='images/home.png') }}" alt="홈버튼">
+            </button>
+            <button id="playButton" class="speaker_button" type="button">
+                <img src="{{ url_for('static', filename='images/speaker.png') }}" alt="Play Music" />
+            </button>
+            <div class="canvas-button-container">
+                <div class="canvas-container">
+                    {% for i in range(canvas_count) %}
+                        <canvas id="jsCanvas{{i}}" class="canvas"></canvas>
+                    {% endfor %}
+                </div>
+                    {% for i in range(canvas_count) %}
+                    <input type="hidden" name="imageData{{ i }}" id="imageData{{ i }}">
+                    {% endfor %}
+                <div class="button-container">
+                    <button class="image_button" type="button" onclick="saveImages()"></button>
+                    <button class="reset_button" type="button" onclick="resetCanvas()"></button>
+                </div>
+            </div>
+        </form>
+        <audio id="bgMusic" src="{{ url_for('static', filename='sound/newyear.mp3') }}" preload="auto"></audio>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>홈 화면으로 이동할까요?</p>
+                    <button id="confirmBack" class="confirm_button">이동할래요</button>
+                    <button id="cancelBack" class="cancel_button">계속 있을래요</button>
+                </div>
+            </div>
+        
+        <script>
+            document.getElementById('playButton').addEventListener('click', function(event) {
+                var audio = document.getElementById('bgMusic');
+                if (audio.paused) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+            });
+
+        </script>
+        <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    </div>
+</body>
+</html>

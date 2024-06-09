@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1280, user-scalable=no, target-densitydpi=device-dpi">
+    <title>다시 듣기</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result_style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/1_content.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='common/css/content_character.css') }}">
+
+    <script src="{{ url_for('static', filename='common/js/lib/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='common/js/lib/createjs.min.js') }}"></script>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result_style.css') }}" />
+    <title>결과</title>
+
+</head>
+<body>
+    <div id="wrap">
+        <button id="homeButton" class="home_button" type="button">
+            <img src="{{ url_for('static', filename='images/home.png') }}" alt="홈버튼">
+        </button>
+        <!-- <h1 class="title_h1">Result</h1>
+        <img class="writing_img" src="{{ image_url }}" alt="result_img" /> -->
+        <div class="result_container">
+            <div class="image_container">
+                <img class="my_letter" src="{{ url_for('static', filename='images/my_letter.png') }}" alt="my_letters" />
+                {% for i in range(canvas_count) %}
+                <img class="writing_img" src="{{ url_for('static', filename='images/test_data/canvas_image_' ~ count ~ '_' ~ i ~ '.png') }}" alt="result_img{{ i }}" />
+                {% endfor %}
+            </div>
+            <!-- <div class="text_container"> -->
+            <!-- <div class="result_box" style="position: relative"> -->
+                <!-- 말풍선 박스 -->
+            <div class="box">
+                <!-- 말풍선 내용 -->
+                <div class="pull">
+                    <!-- result_list 출력 -->
+                    <ul class="result_list">
+                        까치 까치
+                        {% for result in results %}
+                        <li>{{ result }}</li>
+                        {% endfor %}
+                        은 어저께고요🎵
+                    </ul>
+                    
+                    <div class="write">
+                    <!-- <div> -->
+                        <!-- <script src="{{ url_for('static', filename='app.js') }}"></script> -->
+                        <br> 이제 함께 한글 따라쓰기를 하러 가볼까?
+                        <button class="write_button" onclick="goToWriteIndex()"></button>
+                    <!-- </div> -->
+                    <!-- <div class="back">
+                        <button class="back_button" onclick="goBack()">다시 써보기</button> -->
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- </div> -->
+        </div>
+
+
+        <div id="btn_finish" class="btn"><img src="{{ url_for('static', filename='common/images/btn/btn_next_page.png') }}" alt=""/></div>
+
+        <!-- character -->
+        <div id="character_container">
+            <div id="dumi_story" data-ani="basics" class="ani_canvas" style="width:300px; height:500px; bottom: 50px;">
+                <canvas class="canvas" width="170" height="400px" style="top:-100px;left:50px;"></canvas>
+                <!-- <div class="dom_overlay_container" style="width:500px; height:400px;"></div> -->
+                <!-- <div class="bs"><img src="{{ url_for('static', filename='common/images/btn/character_bs.png') }}" alt=""/></div> -->
+            </div>
+            <div id="dumi_story_talk" data-ani="talk" class="ani_canvas hidden" data-audio-idx="{{sound_url}}" style="width:300px; height:500px; bottom: 50px;">
+                <canvas class="canvas" width="170" height="400px" style="top:-100px;left:50px;"></canvas>
+                <!-- <div class="dom_overlay_container" style="width:1000px; height:400px;"></div> -->
+                <!-- <div class="bs"><img src="{{ url_for('static', filename='common/images/btn/character_bs.png') }}" alt=""/></div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 모달 HTML 구조 -->
+    <div id="myModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>홈 화면으로 이동할까요?</p>
+            <button id="confirmBack" class="confirm_button">이동할래요</button>
+            <button id="cancelBack" class="cancel_button">계속 있을래요</button>
+        </div>
+    </div>
+
+    <!-- script -->
+    <script src="{{ url_for('static', filename='common/js/cm_function.js') }}"></script>
+    <script src="{{ url_for('static', filename='common/js/animate/character_info.js') }}"></script>
+    <script src="{{ url_for('static', filename='common/js/animate/dumi_story.js') }}"></script>
+
+    <!-- 모달 기능 스크립트 추가 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var modal = document.getElementById("myModal");
+            var btn = document.getElementById("homeButton");
+            var span = document.getElementsByClassName("close")[0];
+            var confirmBtn = document.getElementById("confirmBack");
+            var cancelBtn = document.getElementById("cancelBack");
+
+            btn.onclick = function() {
+                console.log("Home button clicked"); // 디버그 로그
+                modal.style.display = "block";
+            }
+
+            span.onclick = function() {
+                console.log("Close button clicked"); // 디버그 로그
+                modal.style.display = "none";
+            }
+
+            cancelBtn.onclick = function() {
+                console.log("Cancel button clicked"); // 디버그 로그
+                modal.style.display = "none";
+            }
+
+            confirmBtn.onclick = function() {
+                console.log("Confirm button clicked"); // 디버그 로그
+                window.location.href = "/";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    console.log("Outside of modal clicked"); // 디버그 로그
+                    modal.style.display = "none";
+                }
+            }
+        });
+    </script>
+    <script>
+        var frameAnimation = [dumi_story, dumi_story_talk];
+        document.addEventListener("DOMContentLoaded", function() {
+            createjs.dumi_story(dumi_story);
+            createjs.dumi_story_talk(dumi_story_talk);
+        }, false);
+    </script>
+    <script src="{{ url_for('static', filename='js/1_content.js') }}"></script>
+</body>
+</html>

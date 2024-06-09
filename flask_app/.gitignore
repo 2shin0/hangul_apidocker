@@ -1,0 +1,15 @@
+# Python 관련
+*.pyc
+__pycache__/
+
+# 환경 파일
+.env
+
+# Docker 관련
+*.log
+docker-compose.override.yml
+
+# 특정 폴더
+flask/static/images/collection_data/
+flask/static/images/practicing/
+flask/static/images/test_data/

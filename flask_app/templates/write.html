@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/write_style.css') }}" />
+    <title>글씨 써보기</title>
+</head>
+<body>
+    <div id="wrap">
+        <div class="title_h1">
+            <img src="{{ url_for('static', filename='images/title.png') }}" alt="동요 가사를 써보아요!">
+        </div>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <div class="photo">
+            <img src="{{ url_for('static', filename='images/photo.png') }}" alt="사진">
+        </div>
+        <!-- 스피커 버튼 추가 -->
+        <button id="homeButton" class="home_button" type="button">
+            <img src="{{ url_for('static', filename='images/home.png') }}" alt="홈버튼">
+        </button>
+        <button id="playButton" class="speaker_button" type="button">
+            <img src="{{ url_for('static', filename='images/speaker.png') }}" alt="Play Music" />
+        </button>
+        <div class="canvas-button-container">
+            <div class="canvas-container">
+                <div class="canvas-group">
+                    {% for i in range(canvas_count) %}
+                        <div class="canvas-item">
+                            <canvas id="jsCanvas{{ i }}" class="canvas"></canvas>
+                            <div class="text-overlay-container">
+                                <div class="text-overlay">{{ correct_label[i] }}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="button-container">
+                <input class="check_button" type="button"  onclick="saveImages3()">
+                <input class="reset_button" type="button"  onclick="resetCanvas()">
+            </div>
+        </div>
+    </form>
+    <audio id="bgMusic" src="{{ url_for('static', filename='sound/sulnal.mp3') }}" preload="auto"></audio>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>홈 화면으로 이동할까요?</p>
+            <button id="confirmBack" class="confirm_button">이동할래요</button>
+            <button id="cancelBack" class="cancel_button">계속 있을래요</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('playButton').addEventListener('click', function(event) {
+            var audio = document.getElementById('bgMusic');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        });
+    </script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    </div>
+
+    <div id="correct" class="correct">
+        <video class="correct-video" src="{{ url_for('static', filename='images/correct_cat2.mp4') }}" autoplay loop muted>
+                    </video>
+            <p class="correct-message"></p>
+    </div>
+
+    <div id="incorrect" class="incorrect">
+        <video class="incorrect-video" src="{{ url_for('static', filename='images/incorrect_cat.mp4') }}" autoplay loop muted></video>
+        <input class="retry_button" type="button" onclick="goToWriteIndex()">
+        <input class="next_button" type="button"  onclick="saveImages2()">
+    </div>
+
+</body>
+</html>
